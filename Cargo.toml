@@ -1,0 +1,15 @@
+[package]
+name = "sl8"
+version = "0.1.0"
+authors = ["ghostff <frankchris@hotmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "2.0"
+actix-rt = "1.0"
+listenfd = "0.3"
+mime = "0.3.16"
+lazy_static = "1.4.0"
+tera = "1"
