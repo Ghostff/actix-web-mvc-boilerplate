@@ -7,6 +7,6 @@ use crate::controllers::web:: {
 
 pub fn register_web(config: &mut ServiceConfig)
 {
-    config.service(resource("/").route(get().to(HomeController::index)));
-    config.service(resource("/about").route(get().to(AboutController::index)));
+    config.service(resource("/").route(get().to(HomeController::index)))
+        .service(resource("/about").route(get().to(AboutController::index)));
 }

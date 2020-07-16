@@ -18,6 +18,9 @@ lazy_static! {
     };
 }
 
+//@todo: allow status
+
+
 pub fn web_view<C: FnMut(&mut Context)>(path: &str, mut data: C) -> Result<HttpResponse, Error>
 {
     let mut context = Context::new();
@@ -29,6 +32,7 @@ pub fn web_view<C: FnMut(&mut Context)>(path: &str, mut data: C) -> Result<HttpR
     Ok(HttpResponse::Ok().content_type(mime::TEXT_HTML_UTF_8.to_string()).body(content))
 }
 
+//@todo make to accept both string and struct
 pub fn api_view<S: Into<String>>(data: S) -> impl Responder
 {
     HttpResponse::Ok().content_type(mime::APPLICATION_JSON.to_string()).body(data.into())

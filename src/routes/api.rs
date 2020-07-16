@@ -1,11 +1,12 @@
-use actix_web::Scope;
-use actix_web::web::{resource, get};
+use actix_web::web::{resource, get, ServiceConfig};
 
-use crate::controllers::api::home_controller:: {
-    HomeController
+use crate::controllers::api:: {
+    home_controller::HomeController,
+    about_controller::AboutController
 };
 
-pub fn register_api(scope : Scope) -> Scope
+pub fn register_api(config: &mut ServiceConfig)
 {
-    scope.service(resource("/").route(get().to(HomeController::index)))
+    config.service(resource("/").route(get().to(HomeController::index)))
+        .service(resource("/about").route(get().to(AboutController::index)));
 }

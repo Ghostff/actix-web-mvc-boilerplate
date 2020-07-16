@@ -1,5 +1,5 @@
 [package]
-name = "sl8"
+name = "actix-web-mvc-boilerplate"
 version = "0.1.0"
 authors = ["ghostff <frankchris@hotmail.com>"]
 edition = "2018"
