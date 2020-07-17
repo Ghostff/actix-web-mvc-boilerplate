@@ -1,5 +1,5 @@
 use actix_web::Responder;
-use crate::controllers::web_view as view;
+use crate::controllers::web_view::view;
 
 pub struct AboutController;
 
