@@ -3,7 +3,7 @@ extern crate lazy_static;
 
 use actix_web::{web, HttpServer, App, guard};
 use listenfd::ListenFd;
-use {routes::web::register_web as web_route, routes::api::register_api as api_route};
+use {routes::web::register as web_route, routes::api::register as api_route};
 
 mod routes;
 mod controllers;

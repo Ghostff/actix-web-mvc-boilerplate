@@ -5,7 +5,7 @@ use crate::controllers::web:: {
     about_controller::AboutController
 };
 
-pub fn register_web(config: &mut ServiceConfig)
+pub fn register(config: &mut ServiceConfig)
 {
     config.service(resource("/").route(get().to(HomeController::index)))
         .service(resource("/about").route(get().to(AboutController::index)));

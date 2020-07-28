@@ -5,7 +5,7 @@ use crate::controllers::api:: {
     about_controller::AboutController
 };
 
-pub fn register_api(config: &mut ServiceConfig)
+pub fn register(config: &mut ServiceConfig)
 {
     config.service(resource("/").route(get().to(HomeController::index)))
         .service(resource("/about").route(get().to(AboutController::index)));
