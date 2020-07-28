@@ -84,22 +84,3 @@ mod api_view
         view_with_status(data, StatusCode::OK)
     }
 }
-
-pub mod handlers
-{
-    use actix_web::{HttpResponse, Error, HttpRequest};
-    use actix_web::http::{header::ACCEPT, StatusCode};
-
-    pub async fn page_not_found(req: HttpRequest) -> Result<HttpResponse, Error>
-    {
-        match req.headers().get(ACCEPT) {
-            Some(option) if option.eq("application/json")  => {
-                super::api_view::view_with_status( "{\"error\": \"content not found\"}", StatusCode::NOT_FOUND)
-            } _ => {
-                super::web_view::view_with_status("404.html", |_| {}, StatusCode::NOT_FOUND)
-            }
-        }
-    }
-
-    //@todo implement 500 handler
-}

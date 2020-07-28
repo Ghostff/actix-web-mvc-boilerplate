@@ -1,9 +1,10 @@
 #[macro_use]
 extern crate lazy_static;
 
+use actix_files;
 use actix_web::{web, HttpServer, App, guard};
 use listenfd::ListenFd;
-use {routes::web::register as web_route, routes::api::register as api_route};
+use crate::controllers::web::home_controller::HomeController;
 
 mod routes;
 mod controllers;
@@ -14,9 +15,9 @@ async fn main() -> std::io::Result<()>
     let mut listenfd = ListenFd::from_env();
     let mut server = HttpServer::new(|| {
         App::new()
-            .configure(web_route)
-            .service(web::scope("/api/v1").guard(guard::Header("Accept", "application/json")).configure(api_route))
-            .default_service(web::route().to(crate::controllers::handlers::page_not_found))
+            .service(actix_files::Files::new("/static", "public/static").show_files_listing())
+            .service(web::scope("/api/v1").guard(guard::Header("Accept", "application/json")).configure(routes::register))
+            .default_service(web::route().to(HomeController::index))
     });
 
     server = if let Some(l) = listenfd.take_tcp_listener(0).unwrap() {
